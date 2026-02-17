@@ -1,0 +1,38 @@
+{
+  "id": "default-v0",
+  "name": "Core IT Domain Mesh",
+  "nodes": [
+    { "id": "fe", "name": "Frontend", "demand": 5, "risk": 3, "maturity": 1, "backlog": 1, "owner": "player", "assets": [] },
+    { "id": "be", "name": "Backend", "demand": 5, "risk": 4, "maturity": 1, "backlog": 2, "owner": "player", "assets": [] },
+    { "id": "data", "name": "Data", "demand": 4, "risk": 4, "maturity": 1, "backlog": 2, "owner": "ai", "assets": [] },
+    { "id": "platform", "name": "Platform", "demand": 3, "risk": 3, "maturity": 1, "backlog": 1, "owner": "ai", "assets": [] },
+    { "id": "sre", "name": "SRE", "demand": 3, "risk": 5, "maturity": 0, "backlog": 2, "owner": "ai", "assets": [] },
+    { "id": "sec", "name": "Security", "demand": 3, "risk": 5, "maturity": 0, "backlog": 2, "owner": null, "assets": [] },
+    { "id": "qa", "name": "QA", "demand": 2, "risk": 3, "maturity": 1, "backlog": 1, "owner": "player", "assets": [] },
+    { "id": "devops", "name": "DevOps", "demand": 3, "risk": 4, "maturity": 1, "backlog": 1, "owner": "ai", "assets": [] },
+    { "id": "support", "name": "Support", "demand": 2, "risk": 4, "maturity": 0, "backlog": 1, "owner": null, "assets": [] },
+    { "id": "mobile", "name": "Mobile", "demand": 4, "risk": 3, "maturity": 1, "backlog": 1, "owner": "player", "assets": [] },
+    { "id": "api", "name": "API Gateway", "demand": 4, "risk": 4, "maturity": 1, "backlog": 1, "owner": null, "assets": [] },
+    { "id": "analytics", "name": "Analytics", "demand": 3, "risk": 2, "maturity": 1, "backlog": 1, "owner": "ai", "assets": [] }
+  ],
+  "edges": [
+    { "id": "e1", "from": "fe", "to": "be", "coupling": 3, "integrationDebt": 1, "assets": [] },
+    { "id": "e2", "from": "fe", "to": "api", "coupling": 2, "integrationDebt": 1, "assets": [] },
+    { "id": "e3", "from": "mobile", "to": "api", "coupling": 3, "integrationDebt": 1, "assets": [] },
+    { "id": "e4", "from": "be", "to": "data", "coupling": 3, "integrationDebt": 2, "assets": [] },
+    { "id": "e5", "from": "be", "to": "platform", "coupling": 2, "integrationDebt": 1, "assets": [] },
+    { "id": "e6", "from": "be", "to": "sre", "coupling": 2, "integrationDebt": 1, "assets": [] },
+    { "id": "e7", "from": "data", "to": "analytics", "coupling": 2, "integrationDebt": 1, "assets": [] },
+    { "id": "e8", "from": "platform", "to": "devops", "coupling": 2, "integrationDebt": 1, "assets": [] },
+    { "id": "e9", "from": "devops", "to": "sre", "coupling": 2, "integrationDebt": 1, "assets": [] },
+    { "id": "e10", "from": "sre", "to": "support", "coupling": 2, "integrationDebt": 1, "assets": [] },
+    { "id": "e11", "from": "sec", "to": "platform", "coupling": 2, "integrationDebt": 1, "assets": [] },
+    { "id": "e12", "from": "sec", "to": "api", "coupling": 2, "integrationDebt": 1, "assets": [] },
+    { "id": "e13", "from": "qa", "to": "fe", "coupling": 1, "integrationDebt": 0, "assets": [] },
+    { "id": "e14", "from": "qa", "to": "be", "coupling": 1, "integrationDebt": 0, "assets": [] },
+    { "id": "e15", "from": "support", "to": "fe", "coupling": 1, "integrationDebt": 0, "assets": [] },
+    { "id": "e16", "from": "support", "to": "mobile", "coupling": 1, "integrationDebt": 0, "assets": [] },
+    { "id": "e17", "from": "api", "to": "analytics", "coupling": 1, "integrationDebt": 0, "assets": [] },
+    { "id": "e18", "from": "platform", "to": "api", "coupling": 2, "integrationDebt": 1, "assets": [] }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "ship-sustain-game",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.17.1",
+  "scripts": {
+    "dev": "pnpm --filter @ship/web dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "format": "prettier --write .",
+    "analyze:v0": "tsx scripts/evaluate-v0.ts",
+    "analyze:v1": "tsx scripts/evaluate-v1.ts",
+    "analyze:v2:chargeback": "EVAL_CHARGEBACK=1 tsx scripts/evaluate-v1.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.9",
+    "@eslint/js": "^9.21.0",
+    "eslint": "^9.21.0",
+    "globals": "^15.15.0",
+    "prettier": "^3.5.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.25.0",
+    "vitest": "^3.0.8"
+  }
+}
