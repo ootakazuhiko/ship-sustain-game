@@ -1,11 +1,10 @@
 import type { EdgeState, NodeState } from '@ship/engine';
+import { resolveNodeIcon, type IconMode } from '../config/node-icons';
 
 interface Point {
   x: number;
   y: number;
 }
-
-export type IconMode = 'abstract' | 'concrete';
 
 interface GraphBoardProps {
   nodes: NodeState[];
@@ -23,43 +22,6 @@ function ownerColor(owner: NodeState['owner']): string {
     return '#f97316';
   }
   return '#64748b';
-}
-
-const ABSTRACT_ICON_BY_NODE_ID: Record<string, string> = {
-  fe: '⬢',
-  be: '⬡',
-  data: '◍',
-  platform: '◈',
-  sre: '◎',
-  sec: '◉',
-  qa: '◐',
-  devops: '◒',
-  support: '◑',
-  mobile: '◓',
-  api: '✦',
-  analytics: '✶',
-};
-
-const CONCRETE_ICON_BY_NODE_ID: Record<string, string> = {
-  fe: '🖥️',
-  be: '🧠',
-  data: '🗄️',
-  platform: '🏗️',
-  sre: '🚨',
-  sec: '🔒',
-  qa: '✅',
-  devops: '⚙️',
-  support: '🎧',
-  mobile: '📱',
-  api: '🌐',
-  analytics: '📈',
-};
-
-export function resolveNodeIcon(nodeId: string, mode: IconMode): string {
-  if (mode === 'concrete') {
-    return CONCRETE_ICON_BY_NODE_ID[nodeId] ?? '🧩';
-  }
-  return ABSTRACT_ICON_BY_NODE_ID[nodeId] ?? '◌';
 }
 
 export function GraphBoard(props: GraphBoardProps) {

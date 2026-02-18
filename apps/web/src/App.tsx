@@ -17,7 +17,8 @@ import {
   type PlayerStyle,
 } from '@ship/engine';
 import { useEffect, useMemo, useState } from 'react';
-import { GraphBoard, resolveNodeIcon, type IconMode } from './components/GraphBoard';
+import { type IconMode, resolveNodeIcon } from './config/node-icons';
+import { GraphBoard } from './components/GraphBoard';
 
 interface RunHistoryEntry {
   key: string;
