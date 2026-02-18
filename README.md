@@ -38,6 +38,7 @@ pnpm analyze:v2:chargeback
 3. Play actions on selected node until 4 sprints complete.
 4. Verify result panel shows DP/CC/CH/final score.
 5. Restart with same seed and repeat to validate deterministic behavior.
+6. Detailed manual: `docs/manuals/test-play-manual.md`
 
 ## Current rule highlights (v1/v2)
 - 4 sprints fixed
