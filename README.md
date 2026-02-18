@@ -27,6 +27,7 @@ Open `http://localhost:5173`.
 ```bash
 pnpm lint
 pnpm test
+pnpm test:e2e
 pnpm build
 pnpm analyze:v1
 pnpm analyze:v2:chargeback

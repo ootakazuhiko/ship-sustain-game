@@ -7,6 +7,8 @@
     "dev": "pnpm --filter @ship/web dev",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
     "lint": "pnpm -r lint",
     "format": "prettier --write .",
     "analyze:v0": "tsx scripts/evaluate-v0.ts",
@@ -14,8 +16,9 @@
     "analyze:v2:chargeback": "EVAL_CHARGEBACK=1 tsx scripts/evaluate-v1.ts"
   },
   "devDependencies": {
-    "@types/node": "^22.13.9",
     "@eslint/js": "^9.21.0",
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^22.13.9",
     "eslint": "^9.21.0",
     "globals": "^15.15.0",
     "prettier": "^3.5.2",

@@ -1,6 +1,6 @@
 # Ship & Sustain テストプレイマニュアル
 
-最終更新: 2026-02-17
+最終更新: 2026-02-18
 
 ## 1. 目的
 - ブラウザUIで1ゲームを完走し、主要機能が意図どおり動作することを確認する。
@@ -42,6 +42,18 @@ pnpm dev
 - `Result`: 最終スコア、Style、CH要因、Chargeback集計
 - `AI Decision Trace`: AIの意思決定ログ
 - `Seed Comparison` / `Difficulty Comparison`: 実行履歴比較
+
+## 4.1 画面キャプチャ（E2E取得）
+以下の画像は `pnpm test:e2e` 実行時に自動更新される。
+
+### 初期画面（開始直後）
+![初期画面](./images/e2e-01-initial.png)
+
+### Edge資産投資後
+![Edge資産投資後](./images/e2e-02-edge-invest.png)
+
+### 結果画面（完走後）
+![結果画面](./images/e2e-03-result.png)
 
 ## 5. 基本テストプレイ（1ゲーム完走）
 1. `Seed` を `42` に設定する。
@@ -104,6 +116,12 @@ pnpm dev
 pnpm lint
 pnpm test
 pnpm build
+```
+
+- E2Eテスト + 画面キャプチャ更新:
+
+```bash
+pnpm test:e2e
 ```
 
 - バランス確認:
