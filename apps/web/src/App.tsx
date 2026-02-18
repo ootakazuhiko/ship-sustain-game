@@ -17,7 +17,7 @@ import {
   type PlayerStyle,
 } from '@ship/engine';
 import { useEffect, useMemo, useState } from 'react';
-import { GraphBoard } from './components/GraphBoard';
+import { GraphBoard, type IconMode } from './components/GraphBoard';
 
 interface RunHistoryEntry {
   key: string;
@@ -36,6 +36,24 @@ interface RunHistoryEntry {
 }
 
 type OverrideValue = 'preset' | '0' | '1' | '2' | '3' | '6' | '8' | '10' | '12' | '16';
+const ICON_MODE_STORAGE_KEY = 'ship.icon_mode';
+
+function isIconMode(value: string | null): value is IconMode {
+  return value === 'abstract' || value === 'concrete';
+}
+
+function readInitialIconMode(): IconMode {
+  if (typeof window === 'undefined') {
+    return 'abstract';
+  }
+
+  try {
+    const saved = window.localStorage.getItem(ICON_MODE_STORAGE_KEY);
+    return isIconMode(saved) ? saved : 'abstract';
+  } catch {
+    return 'abstract';
+  }
+}
 
 function formatAction(action: GameAction): string {
   if (action.type === 'pass') {
@@ -125,6 +143,7 @@ function format2(value: number): string {
 export function App() {
   const [seedInput, setSeedInput] = useState('42');
   const [aiDifficulty, setAiDifficulty] = useState<AIDifficulty>('normal');
+  const [iconMode, setIconMode] = useState<IconMode>(readInitialIconMode);
   const [lookaheadOverride, setLookaheadOverride] = useState<OverrideValue>('preset');
   const [topKOverride, setTopKOverride] = useState<OverrideValue>('preset');
   const [state, setState] = useState<GameState>(() => createInitialState(defaultScenario, 42));
@@ -244,6 +263,14 @@ export function App() {
     () => state.logs.filter((entry) => entry.team === 'ai' && entry.decisionTrace).slice(-24).reverse(),
     [state.logs],
   );
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(ICON_MODE_STORAGE_KEY, iconMode);
+    } catch {
+      // Ignore storage failures (private browsing / storage restrictions).
+    }
+  }, [iconMode]);
 
   useEffect(() => {
     if (state.phase !== 'in_progress' || state.activeTeam !== 'ai') {
@@ -464,6 +491,15 @@ export function App() {
             <option value="12">12</option>
             <option value="16">16</option>
           </select>
+          <label htmlFor="icon-mode">Icon</label>
+          <select
+            id="icon-mode"
+            value={iconMode}
+            onChange={(event) => setIconMode(event.target.value as IconMode)}
+          >
+            <option value="abstract">abstract</option>
+            <option value="concrete">concrete</option>
+          </select>
           <button onClick={restart}>New Game</button>
         </div>
       </header>
@@ -474,6 +510,7 @@ export function App() {
             nodes={state.nodes}
             edges={state.edges}
             selectedNodeId={selectedNode?.id ?? ''}
+            iconMode={iconMode}
             onSelectNode={setSelectedNodeId}
           />
         </section>

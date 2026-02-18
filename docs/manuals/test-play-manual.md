@@ -74,6 +74,7 @@ pnpm dev
 - `Seed`: 乱数シード。同じ値・同じ操作なら再現性確認に使える。
 - `AI`: 難易度（`easy / normal / hard`）。
 - `Depth`, `TopK`: AI探索パラメータの上書き。`Preset` は難易度既定値。
+- `Icon`: ノードアイコン表示モード（`abstract` / `concrete`）の切替。選択値はブラウザに保持される。
 - `New Game`: 指定条件でゲームを初期化。
 
 ### 4.2 Status

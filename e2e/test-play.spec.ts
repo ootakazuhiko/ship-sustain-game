@@ -95,9 +95,28 @@ test('主要UIが表示される', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Ship & Sustain' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'New Game' })).toBeVisible();
+  await expect(page.getByLabel('Icon')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Selected Node' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Selected Edge' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'AI Decision Trace' })).toBeVisible();
+});
+
+test('Iconモードを切替でき、リロード後も保持される', async ({ page }) => {
+  await page.goto('/');
+  const firstNodeIcon = page.locator('.graph-node .node-icon').first();
+  await expect(firstNodeIcon).toHaveText('⬢');
+
+  await page.getByLabel('Icon').selectOption('concrete');
+  await expect(firstNodeIcon).toHaveText('🖥️');
+
+  await page.reload();
+  await expect(firstNodeIcon).toHaveText('🖥️');
+
+  await page.getByLabel('Icon').selectOption('abstract');
+  await expect(firstNodeIcon).toHaveText('⬢');
+
+  await page.reload();
+  await expect(firstNodeIcon).toHaveText('⬢');
 });
 
 test('E2Eで1ゲーム完走し、スクリーンショットを保存する', async ({ page }) => {

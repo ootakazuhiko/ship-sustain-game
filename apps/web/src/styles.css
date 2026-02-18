@@ -121,14 +121,16 @@ button:disabled {
 }
 
 .node-value {
-  fill: #0f172a;
-  font-size: 12px;
+  fill: #cbd5e1;
+  font-size: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.04em;
   font-weight: 700;
 }
 
-.node-value-small {
-  fill: #0f172a;
-  font-size: 10px;
+.node-icon {
+  font-size: 18px;
+  dominant-baseline: middle;
 }
 
 .panel-card {
