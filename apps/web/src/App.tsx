@@ -17,7 +17,7 @@ import {
   type PlayerStyle,
 } from '@ship/engine';
 import { useEffect, useMemo, useState } from 'react';
-import { GraphBoard, type IconMode } from './components/GraphBoard';
+import { GraphBoard, resolveNodeIcon, type IconMode } from './components/GraphBoard';
 
 interface RunHistoryEntry {
   key: string;
@@ -186,6 +186,15 @@ export function App() {
       return `${asset}:${owner}`;
     });
   }, [selectedEdge, state.edgeAssetOwners]);
+  const iconLegendRows = useMemo(
+    () =>
+      state.nodes.map((node) => ({
+        id: node.id,
+        name: node.name,
+        icon: resolveNodeIcon(node.id, iconMode),
+      })),
+    [iconMode, state.nodes],
+  );
 
   const postGameReport = useMemo(() => {
     if (state.phase !== 'finished') {
@@ -513,6 +522,17 @@ export function App() {
             iconMode={iconMode}
             onSelectNode={setSelectedNodeId}
           />
+          <div className="icon-legend" aria-label="Icon legend">
+            <h3>Icon Legend</h3>
+            <div className="icon-legend-grid">
+              {iconLegendRows.map((row) => (
+                <p key={row.id}>
+                  <span className="icon-legend-mark">{row.icon}</span>
+                  <span>{row.name}</span>
+                </p>
+              ))}
+            </div>
+          </div>
         </section>
 
         <aside className="panel-card">

@@ -81,6 +81,7 @@ pnpm dev
 ### Step 1: Deliverで得点する
 1. 盤面で `Frontend` ノードを選ぶ。
 2. `Work Deliver` を1回押す。
+3. 盤面下の `Icon Legend` で、`Frontend` のアイコン対応を確認する。
 
 確認ポイント:
 - `Player DP` が増える。

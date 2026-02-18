@@ -55,7 +55,7 @@ const CONCRETE_ICON_BY_NODE_ID: Record<string, string> = {
   analytics: '📈',
 };
 
-function resolveNodeIcon(nodeId: string, mode: IconMode): string {
+export function resolveNodeIcon(nodeId: string, mode: IconMode): string {
   if (mode === 'concrete') {
     return CONCRETE_ICON_BY_NODE_ID[nodeId] ?? '🧩';
   }

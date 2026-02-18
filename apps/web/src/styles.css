@@ -111,6 +111,40 @@ button:disabled {
   max-height: 74vh;
 }
 
+.icon-legend {
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.icon-legend h3 {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.icon-legend-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  gap: 6px 10px;
+}
+
+.icon-legend-grid p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #cbd5e1;
+  font-size: 0.82rem;
+}
+
+.icon-legend-mark {
+  min-width: 16px;
+  text-align: center;
+  font-size: 1rem;
+}
+
 .graph-node {
   cursor: pointer;
 }
@@ -269,5 +303,9 @@ button:disabled {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+  }
+
+  .icon-legend-grid {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
   }
 }
