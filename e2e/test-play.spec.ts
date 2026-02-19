@@ -105,8 +105,10 @@ test('主要UIが表示される', async ({ page }) => {
 test('Iconモードを切替でき、リロード後も保持される', async ({ page }) => {
   await page.goto('/');
   const iconModeSelect = page.locator('#icon-mode');
+  const iconLegend = page.locator('.icon-legend');
   const firstNodeIcon = page.locator('.graph-node .node-icon').first();
   const frontendLegend = page.locator('.icon-legend-grid p', { hasText: 'Frontend' });
+  await expect(iconLegend).toBeVisible();
   await expect(firstNodeIcon).toHaveText('⬢');
   await expect(frontendLegend).toContainText('⬢');
 
