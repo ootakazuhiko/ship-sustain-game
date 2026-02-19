@@ -69,11 +69,13 @@ pnpm dev
 ### 4.0 盤面（GraphBoard）
 - ノード: 開発・運用などの機能領域。クリックすると `Selected Node` が切り替わる。
 - エッジ: ノード間の依存関係。エッジ候補は `Selected Edge` のプルダウンで選ぶ。
+- `Icon Legend`: 現在の `Icon` モードで、各ノード名に対応するアイコン一覧を表示する。
 
 ### 4.1 上部設定
 - `Seed`: 乱数シード。同じ値・同じ操作なら再現性確認に使える。
 - `AI`: 難易度（`easy / normal / hard`）。
 - `Depth`, `TopK`: AI探索パラメータの上書き。`Preset` は難易度既定値。
+- `Icon`: ノードアイコン表示モード（`abstract` / `concrete`）の切替。選択値はブラウザに保持される。
 - `New Game`: 指定条件でゲームを初期化。
 
 ### 4.2 Status

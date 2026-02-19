@@ -67,7 +67,9 @@ pnpm dev
 1. `Seed` を `42` にする。
 2. `AI` を `easy` にする。
 3. `Depth` と `TopK` は `Preset` のままにする。
-4. `New Game` を押す。
+4. `Icon` は最初は `concrete` を選ぶ（業務イメージと結びつけやすいため）。
+5. `New Game` を押す。
+   - `Icon` の選択はブラウザに保持される。
 
 開始時の基準値（デフォルト設定）:
 - スプリント: `4`
@@ -79,6 +81,7 @@ pnpm dev
 ### Step 1: Deliverで得点する
 1. 盤面で `Frontend` ノードを選ぶ。
 2. `Work Deliver` を1回押す。
+3. 盤面下の `Icon Legend` で、`Frontend` のアイコン対応を確認する。
 
 確認ポイント:
 - `Player DP` が増える。

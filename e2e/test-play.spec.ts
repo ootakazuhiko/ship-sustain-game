@@ -93,11 +93,40 @@ async function readResultSnapshot(page: Page): Promise<{ playerFinal: number; ai
 
 test('主要UIが表示される', async ({ page }) => {
   await page.goto('/');
+  const iconModeSelect = page.locator('#icon-mode');
   await expect(page.getByRole('heading', { name: 'Ship & Sustain' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'New Game' })).toBeVisible();
+  await expect(iconModeSelect).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Selected Node' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Selected Edge' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'AI Decision Trace' })).toBeVisible();
+});
+
+test('Iconモードを切替でき、リロード後も保持される', async ({ page }) => {
+  await page.goto('/');
+  const iconModeSelect = page.locator('#icon-mode');
+  const iconLegend = page.locator('.icon-legend');
+  const firstNodeIcon = page.locator('.graph-node .node-icon').first();
+  const frontendLegend = page.locator('.icon-legend-grid p', { hasText: 'Frontend' });
+  await expect(iconLegend).toBeVisible();
+  await expect(firstNodeIcon).toHaveText('⬢');
+  await expect(frontendLegend).toContainText('⬢');
+
+  await iconModeSelect.selectOption('concrete');
+  await expect(firstNodeIcon).toHaveText('🖥️');
+  await expect(frontendLegend).toContainText('🖥️');
+
+  await page.reload();
+  await expect(firstNodeIcon).toHaveText('🖥️');
+  await expect(frontendLegend).toContainText('🖥️');
+
+  await iconModeSelect.selectOption('abstract');
+  await expect(firstNodeIcon).toHaveText('⬢');
+  await expect(frontendLegend).toContainText('⬢');
+
+  await page.reload();
+  await expect(firstNodeIcon).toHaveText('⬢');
+  await expect(frontendLegend).toContainText('⬢');
 });
 
 test('E2Eで1ゲーム完走し、スクリーンショットを保存する', async ({ page }) => {

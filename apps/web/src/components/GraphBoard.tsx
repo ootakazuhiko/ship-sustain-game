@@ -1,4 +1,5 @@
 import type { EdgeState, NodeState } from '@ship/engine';
+import { resolveNodeIcon, type IconMode } from '../config/node-icons';
 
 interface Point {
   x: number;
@@ -9,6 +10,7 @@ interface GraphBoardProps {
   nodes: NodeState[];
   edges: EdgeState[];
   selectedNodeId: string;
+  iconMode: IconMode;
   onSelectNode: (nodeId: string) => void;
 }
 
@@ -23,7 +25,7 @@ function ownerColor(owner: NodeState['owner']): string {
 }
 
 export function GraphBoard(props: GraphBoardProps) {
-  const { nodes, edges, selectedNodeId, onSelectNode } = props;
+  const { nodes, edges, selectedNodeId, iconMode, onSelectNode } = props;
   const size = 620;
   const center = size / 2;
   const radius = 230;
@@ -77,6 +79,7 @@ export function GraphBoard(props: GraphBoardProps) {
         }
 
         const selected = node.id === selectedNodeId;
+        const icon = resolveNodeIcon(node.id, iconMode);
         return (
           <g key={node.id} className="graph-node" onClick={() => onSelectNode(node.id)}>
             <circle
@@ -88,14 +91,14 @@ export function GraphBoard(props: GraphBoardProps) {
               strokeWidth={selected ? 4 : 2}
               filter={selected ? 'url(#glow)' : undefined}
             />
-            <text x={point.x} y={point.y - 34} textAnchor="middle" className="node-label">
+            <text x={point.x} y={point.y - 40} textAnchor="middle" className="node-label">
               {node.name}
             </text>
-            <text x={point.x} y={point.y + 6} textAnchor="middle" className="node-value">
-              B{node.backlog}
+            <text x={point.x} y={point.y + 1} textAnchor="middle" className="node-icon">
+              {icon}
             </text>
-            <text x={point.x} y={point.y + 19} textAnchor="middle" className="node-value-small">
-              M{node.maturity}
+            <text x={point.x} y={point.y + 38} textAnchor="middle" className="node-value">
+              B{node.backlog} M{node.maturity}
             </text>
           </g>
         );
